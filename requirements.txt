@@ -1,0 +1,4 @@
+ Django==2.2.5
+ django_taggit==0.23
+ django-cors-headers==3.1.0
+ django-debug-toolbar==2.0
