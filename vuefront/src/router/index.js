@@ -1,15 +1,16 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import App from '@/App'
 
-Vue.use(Router)
+// 实现按需加载
+const home = r => require.ensure([], () => r(require('@/page/home')), 'home')
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    }
-  ]
-})
+// 定义路由
+export default [{
+    path: '/',
+    component: App,
+    children: [
+        {
+            path: '',
+            component: home
+        }
+    ]
+}]
