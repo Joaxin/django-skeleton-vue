@@ -2,17 +2,17 @@
 const img_path = '/img/'
 
 const searchList = {
-    doge: {
-        title: 'Doge',
-        url: 'https://www.dogedoge.com/results',
-        key: 'q',
-        icon: img_path + 'icon_doge.png'
-    },
     baidu: {
         title: '百度',
         url: 'https://www.baidu.com/s',
         key: 'wd',
         icon: img_path + 'icon_baidu.png'
+    },
+    doge: {
+        title: 'Doge',
+        url: 'https://www.dogedoge.com/results',
+        key: 'q',
+        icon: img_path + 'icon_doge.png'
     },
     bing: {
         title: '必应',

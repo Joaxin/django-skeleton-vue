@@ -6,6 +6,7 @@ import VueResource  from 'vue-resource'
 import routes from './router/index'
 import store from './store/index'
 
+import locale from 'element-ui/lib/locale/lang/en'
 import 'element-ui/lib/theme-chalk/display.css'
 import './assets/css/main.css'
 
@@ -13,6 +14,7 @@ Vue.config.productionTip = false
 
 Vue.use(Router)
 Vue.use(ElementUI)
+Vue.use(ElementUI, { locale })
 Vue.use(VueResource)
 
 const router = new Router({

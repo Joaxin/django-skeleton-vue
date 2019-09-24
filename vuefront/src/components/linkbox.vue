@@ -15,7 +15,7 @@
     </el-row> -->
     <el-row>
         <el-table :data="mylinkList" style="width: 100%" border>
-          <!-- <el-table-column prop="id" label="id" min-width="100">
+          <el-table-column prop="id" label="id" min-width="100">
             <template slot-scope="scope"> {{ scope.row.id }} </template>
           </el-table-column>
           <el-table-column prop="ico" label="icon" min-width="100">
@@ -32,7 +32,7 @@
           </el-table-column>
         <el-table-column prop="tags" label="tags" min-width="100">
             <template slot-scope="scope"> {{ scope.row.tags }} </template>
-          </el-table-column> -->
+          </el-table-column>
         </el-table>
     </el-row>
     </div>
