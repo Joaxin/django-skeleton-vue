@@ -1,8 +1,8 @@
 <template>
-    <el-form method="get" target="_blank" :action="scdata.url" id="search-component">
+    <el-form ref="form" method="get" target="_blank" :action="scdata.url" id="search-component">
         <el-form-item>
             <el-input placeholder="请输入搜索内容" :name="scdata.key" v-model="sctext" clearable>
-                <el-dropdown
+                <!-- <el-dropdown
                     trigger="click"
                     slot="prepend"
                     placement="bottom"
@@ -23,7 +23,7 @@
                         </el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
-                <el-button slot="append" icon="el-icon-search" native-type="submit"></el-button>
+                <el-button slot="append" icon="el-icon-search" native-type="submit"></el-button> -->
             </el-input>
         </el-form-item>
     </el-form>

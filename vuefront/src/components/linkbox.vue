@@ -1,7 +1,8 @@
 <template>
     <div>
     <el-row :gutter="20">
-        <el-col :xs="8" :sm="6" :md="6" :lg="4" :xl="4" v-for="link in linkList" :key="link">
+        <el-col :xs="8" :sm="6" :md="6" :lg="4" :xl="4" v-for="link in linkList" :key="link.string">
+           <!-- Avoid using non-primitive value as key, use string/number value instead. -->
             <a :href="link.url" target="_blank">
                 <img :src="link.icon" :alt="link.title" />
                 <span>{{ link.title }}</span>
@@ -14,7 +15,7 @@
     </el-row> -->
     <el-row>
         <el-table :data="mylinkList" style="width: 100%" border>
-          <el-table-column prop="id" label="id" min-width="100">
+          <!-- <el-table-column prop="id" label="id" min-width="100">
             <template slot-scope="scope"> {{ scope.row.id }} </template>
           </el-table-column>
           <el-table-column prop="ico" label="icon" min-width="100">
@@ -31,7 +32,7 @@
           </el-table-column>
         <el-table-column prop="tags" label="tags" min-width="100">
             <template slot-scope="scope"> {{ scope.row.tags }} </template>
-          </el-table-column>
+          </el-table-column> -->
         </el-table>
     </el-row>
     </div>

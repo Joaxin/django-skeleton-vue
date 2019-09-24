@@ -1,6 +1,5 @@
 /* eslint-disable */ 
-
-const img_path = '/static/img/'
+const img_path = '/img/'
 
 const searchList = {
     doge: {
