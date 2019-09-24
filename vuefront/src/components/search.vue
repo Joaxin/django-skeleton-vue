@@ -61,7 +61,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style slot-scope>
 img {
     width: 1.2rem;
     margin: 0 0.2rem -0.2rem 0;

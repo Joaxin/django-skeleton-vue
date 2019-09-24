@@ -1,4 +1,5 @@
 <template>
+    <div>
     <el-row :gutter="20">
         <el-col :xs="8" :sm="6" :md="6" :lg="4" :xl="4" v-for="link in linkList" :key="link">
             <a :href="link.url" target="_blank">
@@ -7,6 +8,33 @@
             </a>
         </el-col>
     </el-row>
+    <!-- <el-row display="margin-top:10px">
+        <el-input v-model="input" placeholder="URL" style="display:inline-table; width: 30%; float:left"></el-input>
+        <el-button type="primary" @click="addBook()" style="float:left; margin: 2px;">ADD</el-button>
+    </el-row> -->
+    <el-row>
+        <el-table :data="mylinkList" style="width: 100%" border>
+          <el-table-column prop="id" label="id" min-width="100">
+            <template slot-scope="scope"> {{ scope.row.id }} </template>
+          </el-table-column>
+          <el-table-column prop="ico" label="icon" min-width="100">
+            <template slot-scope="scope"> {{ scope.row.ico}} </template>
+          </el-table-column>
+          <el-table-column prop="title" label="title" min-width="100">
+            <template slot-scope="scope"> {{ scope.row.title }} </template>
+          </el-table-column>
+          <el-table-column prop="url" label="url" min-width="100">
+            <template slot-scope="scope"> {{ scope.row.url }} </template>
+          </el-table-column>
+            <el-table-column prop="category" label="category" min-width="100">
+            <template slot-scope="scope"> {{ scope.row.category}} </template>
+          </el-table-column>
+        <el-table-column prop="tags" label="tags" min-width="100">
+            <template slot-scope="scope"> {{ scope.row.tags }} </template>
+          </el-table-column>
+        </el-table>
+    </el-row>
+    </div>
 </template>
 
 <script>
@@ -14,17 +42,52 @@ export default {
     data() {
         return {
             linkList: [],
-            category: "common"
+            mylinkList: [],
+            // category: "common"
         };
     },
     created() {
         var _link_list = this.$store.getters.baselinks;
         this.linkList = _link_list;
+    },
+    mounted: function () {
+    this.showLinks()
+  },
+    methods: {
+    // addBook () {
+    //     http://127.0.0.1:8000/api/favorites/
+    //   this.$http.get('http://127.0.0.1:8000/api/add_book?book_name=' + this.input)
+    //     .then((response) => {
+    //       var res = JSON.parse(response.bodyText)
+    //       if (res.error_num === 0) {
+    //         this.showBooks()
+    //       } else {
+    //         this.$message.error('新增书籍失败，请重试')
+    //         console.log(res['msg'])
+    //       }
+    //     })
+    // },
+    showLinks () {
+      this.$http.get('http://127.0.0.1:8000/api/favorites/?format=json').then((response) => {
+          var res = JSON.parse(response.bodyText)
+          console.log(res)
+          this.mylinkList = res
+        //   if (res.error_num === 0) {
+        //     this.mylinkList = res
+        //   } else {
+        //     this.$message.error('Loading failed')
+        //     console.log(res['msg'])
+        //   }
+        }, function (response) {
+                  alert("error ");
+              // error callback
+          })
     }
+  }
 };
 </script>
 
-<style scoped>
+<style slot-scope>
 a {
     display: block;
     padding: 0.5rem 0 0.5rem 1rem;

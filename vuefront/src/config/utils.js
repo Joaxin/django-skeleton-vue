@@ -1,3 +1,5 @@
+/* eslint-disable */ 
+
 const img_path = '/static/img/'
 
 const searchList = {

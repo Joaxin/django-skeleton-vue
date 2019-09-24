@@ -14,20 +14,20 @@
 </template>
 
 <script>
-import Search from "../components/search";
-import LinkBox from "../components/linkbox";
+import Search from '../components/search'
+import LinkBox from '../components/linkbox'
 
 export default {
-    components: {
-        // 绑定组件标签
-        "component-search": Search,
-        "component-linkbox": LinkBox
-    }
-};
+  components: {
+    // 绑定组件标签
+    'component-search': Search,
+    'component-linkbox': LinkBox
+  }
+}
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<!-- Add "slot-scope" attribute to limit CSS to this component only -->
+<style slot-scope>
 #col-search {
     margin-top: 10%;
 }
@@ -39,4 +39,4 @@ export default {
     background: white;
     border-radius: 4px;
 }
-</style>>
+</style>
