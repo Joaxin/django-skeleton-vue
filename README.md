@@ -1,5 +1,15 @@
-# django-skeleton-vue
-a vue.js template for django
+django-skeleton-vue
+
+## Features
+
+- Django restframwork
+- admin simpleui
+- taggit
+- debug_toolbar
+- Vue CLI3 & Vue.js integration
+- vue-resource, element-ui
+
+## Setup
 
 setup a `virtualenv` if needed
 
@@ -29,39 +39,83 @@ python manage.py runserver
 
 Load the site at [http://127.0.0.1:8000](http://127.0.0.1:8000/).
 
-### Vue
+## Vue
 
-
+Node.js from http://nodejs.cn/download/
 
 ```
-npm install -g vue-cli
-vue-init webpack vuefront
+node -v
+	v12.10.0
+npm install npm -g
+npm -v
+	6.11.3
+```
+
+```
+# Not needed here
+# vue-cli ==> @vue/cli
+# ✘ npm install -g vue-cli
+# ✘ vue-init webpack vuefront
+```
+
+```
+npm install -g @vue/cli
+vue -V
+	3.11.0
+
+## Will  Use https://registry.npm.taobao.org for faster installation in China
+vue create vuefront 
+
+# Vue CLI v3.11.0
+# ? Check the features needed for your project: Babel, Router, Vuex, CSS Pre-processors, # Linter
+# ? Use history mode for router? (Requires proper server setup for index fallback in # production) No
+# ? Pick a CSS pre-processor (PostCSS, Autoprefixer and CSS Modules are supported by # default): Sass/SCSS(with dart-sass)
+# ? Pick a linter / formatter config: Prettier
+# ? Pick additional lint features: Lint on save
+# ? Where do you prefer placing config for Babel, PostCSS, ESLint, etc.? In dedicated # config files
+# ? Save this as a preset for future projects? Yes
+```
+
+```
 cd vuefront
 # install dependencies
 npm install
-npm install --save vuex
-
 npm install  vue-resource
 npm install element-ui
 ```
 
+Project setup
 ```
-# serve with hot reload at localhost:8080
-npm run dev
+npm install
+```
 
-# build for production with minification
+Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+Compiles and minifies for production
+```
 npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
 ```
+Run your tests
+```
+npm run test
+```
+
+Lints and fixes files
+```
+npm run lint
+```
+
+Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/)
+
+
+
+## REFERENCES
+
+- .browserslistrc ==> https://github.com/browserslist/browserslist#custom-usage-data
+
+https://cli.vuejs.org/config/#typescript
 

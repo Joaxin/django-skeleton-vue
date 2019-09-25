@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ["127.0.0.1","localhost"]
 # Application definition
 
 INSTALLED_APPS = [
+    'simpleui',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,7 +41,7 @@ INSTALLED_APPS = [
     'lime',
     'taggit',
     'rest_framework',
-     'taggit_serializer',
+    'taggit_serializer',
     'debug_toolbar',
 ]
 
@@ -146,7 +147,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "vuefront/dist/static")
+    os.path.join(BASE_DIR, "vuefront/dist/static/"),
+    os.path.join(BASE_DIR, "static")
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 

@@ -1,31 +1,17 @@
-import Vue from 'vue'
-import App from './App.vue'
-import Router from 'vue-router'
-import ElementUI from 'element-ui'
-import VueResource  from 'vue-resource'
-import routes from './router/index'
-import store from './store/index'
+import Vue from "vue";
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
-import locale from 'element-ui/lib/locale/lang/en'
-import 'element-ui/lib/theme-chalk/display.css'
-import './assets/css/main.css'
+import App from "./App.vue";
+import router from "./router";
+import store from "./store";
 
-Vue.config.productionTip = false
+Vue.use(ElementUI);
 
-Vue.use(Router)
-Vue.use(ElementUI)
-Vue.use(ElementUI, { locale })
-Vue.use(VueResource)
+Vue.config.productionTip = false;
 
-const router = new Router({
-  //
-  mode: 'history',
-  routes: routes
-})
-
-/* eslint-disable no-new */
 new Vue({
   router,
   store,
-  render: h => h(App),
-}).$mount('#app')
+  render: h => h(App)
+}).$mount("#app");
