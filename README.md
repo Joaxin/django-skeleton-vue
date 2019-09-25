@@ -119,3 +119,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/)
 
 https://cli.vuejs.org/config/#typescript
 
+- https://github.com/gtalarico/django-vue-template
+

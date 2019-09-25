@@ -1,13 +1,11 @@
 
-
 <template>
-
   <div id="app">
-    <el-row type="flex" class="row-bg" justify="center">
-    <el-tabs v-model="activeName" router>
-      <el-tab-pane label="Home" name="first"><router-link to="/">1</router-link></el-tab-pane>
-      <el-tab-pane label="About" name="second" @click="$router.push('about')"></el-tab-pane>
-    </el-tabs>
+      <el-row type="flex" class="row-bg" justify="center">
+      <el-menu :default-active="$route.path"  class="el-menu-demo" mode="horizontal" router>
+        <el-menu-item index="/">Home</el-menu-item>
+        <el-menu-item  index="/about">About</el-menu-item>
+      </el-menu>
     </el-row>
     <router-view />
   </div>
@@ -15,18 +13,7 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        activeName: 'first'
-      };
-    },
-    methods: {
-      handleClick(tab, event) {
-        console.log(tab, event);
-      }
-    }
-  };
+
 </script>
 
 <style lang="scss">

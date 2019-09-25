@@ -24,12 +24,6 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-class PublicBookmarkManager(models.Manager):
-    def get_queryset(self):
-        qs = super(PublicBookmarkManager, self).get_queryset()
-        return qs.filter(is_public=True)
-
-
 class Bookmark(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='author')
     url = models.URLField()
@@ -43,7 +37,7 @@ class Bookmark(models.Model):
     updated = models.DateTimeField('date updated',auto_now=True)
     pub_date = models.DateField('date published', default=timezone.now)
 
-    category = models.ForeignKey(Category, verbose_name='网站分类',on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name='coco',on_delete=models.CASCADE)
     tags=TaggableManager()
 
     objects = models.Manager()
