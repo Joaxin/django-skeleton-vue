@@ -1,6 +1,7 @@
 from rest_framework import generics
-from ..models import Category,Bookmark
-from .serializers import CategorySerializer,BookmarkSerializer
+from ..models import Category,Message
+from .serializers import CategorySerializer,MessageSerializer
+from rest_framework import viewsets
 
 class CategoryListView(generics.ListAPIView):
     queryset = Category.objects.all()
@@ -10,10 +11,17 @@ class CategoryDetailView(generics.RetrieveAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-class BookmarkListView(generics.ListAPIView):
-    queryset = Bookmark.objects.all()
-    serializer_class = BookmarkSerializer
+class MessageListView(generics.ListAPIView):
+    queryset = Message.objects.all()
+    serializer_class = MessageSerializer
 
-class BookmarkDetailView(generics.RetrieveAPIView):
-    queryset = Bookmark.objects.all()
-    serializer_class = BookmarkSerializer
+class MessageDetailView(generics.RetrieveAPIView):
+    queryset = Message.objects.all()
+    serializer_class = MessageSerializer
+
+class MessageViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows messages to be viewed or edited.
+    """
+    queryset = Message.objects.all()
+    serializer_class = MessageSerializer

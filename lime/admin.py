@@ -1,14 +1,14 @@
 from django.contrib import admin
-from .models import Bookmark, Category
+from .models import Message, Category
 
 # Register your models here.
-@admin.register(Bookmark)
-class BookmarkAdmin(admin.ModelAdmin):
-    list_display = ('title', 'url', 'author', 'created', 'pub_date',)
-    list_filter = ('title', 'author', 'url', 'is_public',)
-    search_fields = ('title', 'url',)
-    date_hierarchy = 'pub_date'
-    ordering = ('pub_date',)
+@admin.register(Message)
+class MessageAdmin(admin.ModelAdmin):
+    list_display = ( 'author', 'created', 'updated','content','category',)
+    list_filter = ('author', 'created', 'category')
+    search_fields = ('category', 'content')
+    date_hierarchy = 'created'
+    ordering = ('updated',)
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
