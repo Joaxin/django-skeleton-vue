@@ -33,7 +33,7 @@ class Message(models.Model):
     class Meta:
         verbose_name = 'message'
         verbose_name_plural = 'messages'
-        ordering = ['updated']
+        ordering = ['id']
 
     def __str__(self):
         return '%s (%s) (%s)' % (self.content, self.category, self.content)

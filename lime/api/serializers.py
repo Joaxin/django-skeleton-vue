@@ -8,6 +8,7 @@ class MessageSerializer(TaggitSerializer, serializers.ModelSerializer):
     tags = TagListSerializerField()
 
     category_name = serializers.CharField(source='category.name', read_only=True)
+    
     author_name =serializers.CharField(default=serializers.CurrentUserDefault(), read_only=True)
     
     class Meta:
