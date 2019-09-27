@@ -73,9 +73,9 @@
           </div>
           <div class="text item" v-html="msg.content.replace(/\r?\n/g, '<br />')"></div>
           <br>
-          <!-- <i class="el-icon-time"><time class="time" v-html="msg.created"></time></i><br>
-          <i class="el-icon-sort"><time class="time" v-html="msg.updated"></time></i><br>
-                       <br> -->
+          <i class="el-icon-time"><time class="time" v-html="msg.created"></time></i><br>
+          <i class="el-icon-sort"><time class="time" >{{msg.updated}}</time></i><br>
+                       <br>
               <el-tag class="tags"
                 v-for="tag in msg.tags"
                 :key="tag" type="success">
