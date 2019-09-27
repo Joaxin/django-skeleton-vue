@@ -1,4 +1,6 @@
-django-skeleton-vue
+## Django-skeleton-vue
+
+![](static/assets.png)
 
 ## Features
 
@@ -8,6 +10,7 @@ django-skeleton-vue
 - debug_toolbar
 - Vue CLI3 & Vue.js integration
 - vue-resource, element-ui
+- data manipulation
 
 ## Setup
 
@@ -117,7 +120,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/)
 
 - .browserslistrc ==> https://github.com/browserslist/browserslist#custom-usage-data
 
-https://cli.vuejs.org/config/#typescript
+- https://cli.vuejs.org/config/#typescript
 
-- https://github.com/gtalarico/django-vue-template
+- Inspiration from: https://github.com/gtalarico/django-vue-template
 
