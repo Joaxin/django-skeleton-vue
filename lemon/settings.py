@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'lime',
     'taggit',
     'rest_framework',
+    'rest_framework.authtoken',
     'taggit_serializer',
     'debug_toolbar',
 ]

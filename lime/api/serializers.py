@@ -6,10 +6,13 @@ from taggit_serializer.serializers import (TagListSerializerField,
 class MessageSerializer(TaggitSerializer, serializers.ModelSerializer):
 
     tags = TagListSerializerField()
+
+    category_name = serializers.CharField(source='category.name', read_only=True)
+    author_name =serializers.CharField(default=serializers.CurrentUserDefault(), read_only=True)
     
     class Meta:
         model = Message
-        fields = ['id', 'author','created','updated','content','category','tags']
+        fields = ['id', 'author','author_name','created','updated','content','category','category_name','tags']
 
 
 class CategorySerializer(serializers.ModelSerializer):

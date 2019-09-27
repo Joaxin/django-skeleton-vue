@@ -1,13 +1,14 @@
 from django.urls import path, include
 from django.contrib import admin
 from rest_framework import routers
-from .views import MessageViewSet
+from .views import MessageViewSet,CategoryViewSet
 
 app_name = 'lime'
 
 
 router = routers.DefaultRouter()
-router.register('lime', MessageViewSet)
+router.register('messages', MessageViewSet)
+router.register('category', CategoryViewSet)
 
 
 urlpatterns = [
