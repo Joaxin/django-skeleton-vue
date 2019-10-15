@@ -9,8 +9,8 @@
 - taggit
 - debug_toolbar
 - Vue CLI3 & Vue.js integration
-- vue-resource, element-ui
-- data manipulation
+- axios, element-ui
+- CRUD data manipulation
 
 ## Setup
 

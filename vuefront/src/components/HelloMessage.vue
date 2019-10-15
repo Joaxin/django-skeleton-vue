@@ -14,6 +14,7 @@
 
     <el-button type="primary" icon="el-icon-plus" circle  @click="dialogVisible = true"></el-button>
 
+     <!-- Add Messages -->
     <el-dialog title="Add Messages" :visible.sync="dialogVisible" width="30%"  :before-close="handleDataClose">
     <el-form ref="form" :model="form" label-width="80px">
       <el-form-item label="Category">
@@ -43,11 +44,11 @@
         :disabled="!form.content || !form.dynamicTags  ">Submit</el-button>
       </span>
   </el-dialog>
-
+  
   </el-col>
 </el-row>
 <el-divider></el-divider>
-<p v-if="messages.length === 0">No Messages</p>
+<!-- <p v-if="messages.length === 0">No Messages</p> -->
 
 <el-row :gutter="18">
   <el-col :xs="24" :sm="12" :md="8" :lg="8" v-for="(msg, index) in messages" :key="index">
@@ -59,9 +60,7 @@
               </el-badge>
               <el-button type="primary" size="small"  style="float: left;margin-right:10px;margin-top:15px;margin-left:10px;" plain v-html="msg.category_name"></el-button>
 
-            <el-button style="float: right;margin-top:10px;" type="submit" @click="patchMessage(msg.id, 
-            { author: 1, content: 'hshahaha', category: 1 , tags:['ABC']}
-            )" circle><i class="el-icon-edit"></i></el-button>
+            <el-button style="float: right;margin-top:10px;" type="submit" @click="putMessage(msg.id,currentMessage)" circle><i class="el-icon-edit"></i></el-button>
             
             <el-button style="float: right;margin-top:10px;" type="submit" @click="deleteMessage(msg.id)" circle><i class="el-icon-delete"></i></el-button>
               
@@ -103,10 +102,11 @@ export default {
       form: {
           content: "",
           category: '',
-          dynamicTags: ['ABC', 'Hello World'],
+          dynamicTags: ['Hello World'],
           inputVisible: false,
           inputValue: ''
-        }
+        },
+      currentMessage:  { author: 1, content: 'hahahaha', category: 1 , tags:['ABC','Hi']},
     };
   },
   computed: mapState({
@@ -118,8 +118,8 @@ export default {
       addMessage(item){
         this.$store.dispatch("addMessage",item)
       },
-      patchMessage(pk, item){
-        this.$store.dispatch("patchMessage",pk, item)
+      putMessage(pk, item){
+        this.$store.dispatch("putMessage", pk, item)
         this.reload()
       },
       deleteMessage(pk){

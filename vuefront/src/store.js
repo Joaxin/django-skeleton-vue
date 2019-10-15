@@ -25,7 +25,7 @@ export default new Vuex.Store({
     addMessage(state, message) {
       state.messages.push(message);
     },
-    patchMessage(state, msgId, messages) {
+    putMessage(state, msgId, messages) {
       state.messages = state.messages.splice(msgId, 1, messages);
       state.messages = messages;
     },
@@ -48,9 +48,9 @@ export default new Vuex.Store({
         commit("addMessage", message);
       });
     },
-    patchMessage({ commit }, msgId, message) {
-      messageService.patchMessage(msgId, message);
-      commit("patchMessage", msgId, message);
+    putMessage({ commit }, msgId, message) {
+      messageService.putMessage(msgId, message);
+      commit("putMessage", msgId, message);
     },
     deleteMessage({ commit }, msgId) {
       messageService.deleteMessage(msgId);
