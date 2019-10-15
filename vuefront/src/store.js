@@ -9,6 +9,7 @@ export default new Vuex.Store({
   state: {
     messages: [],
     category: [],
+    message: {}
   },
   getters: {
     messages: state => {
@@ -17,6 +18,9 @@ export default new Vuex.Store({
     category: state => {
       return state.category;
     },
+    message: state => {
+      return state.message;
+    }
   },
   mutations: {
     setMessages(state, messages) {
@@ -25,7 +29,14 @@ export default new Vuex.Store({
     addMessage(state, message) {
       state.messages.push(message);
     },
+    getMessage(state, message) {
+      state.message = message;
+    },
     putMessage(state, msgId, messages) {
+      state.messages = state.messages.splice(msgId, 1, messages);
+      state.messages = messages;
+    },
+    patchMessage(state, msgId, messages) {
       state.messages = state.messages.splice(msgId, 1, messages);
       state.messages = messages;
     },
@@ -34,13 +45,17 @@ export default new Vuex.Store({
     },
     setCategory(state, category) {
       state.category = category;
-    },
-
+    }
   },
   actions: {
     getMessages({ commit }) {
       messageService.fetchMessages().then(messages => {
         commit("setMessages", messages);
+      });
+    },
+    getMessage({ commit }, msgId) {
+      messageService.getMessage(msgId).then(message => {
+        commit("getMessage", message);
       });
     },
     addMessage({ commit }, message) {
@@ -52,6 +67,10 @@ export default new Vuex.Store({
       messageService.putMessage(msgId, message);
       commit("putMessage", msgId, message);
     },
+    patchMessage({ commit }, msgId, message) {
+      messageService.patchMessage(msgId, message);
+      commit("patchMessage", msgId, message);
+    },
     deleteMessage({ commit }, msgId) {
       messageService.deleteMessage(msgId);
       commit("deleteMessage", msgId);
@@ -60,6 +79,6 @@ export default new Vuex.Store({
       messageService.fetchCategory().then(category => {
         commit("setCategory", category);
       });
-    },
+    }
   }
 });

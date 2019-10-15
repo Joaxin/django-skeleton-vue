@@ -12,10 +12,10 @@
     <br>
     <br>
 
-    <el-button type="primary" icon="el-icon-plus" circle  @click="dialogVisible = true"></el-button>
+    <el-button type="primary" icon="el-icon-plus" circle  @click="dialogAdd = true"></el-button>
 
      <!-- Add Messages -->
-    <el-dialog title="Add Messages" :visible.sync="dialogVisible" width="30%"  :before-close="handleDataClose">
+    <el-dialog title="Add Messages" :visible.sync="dialogAdd" width="30%"  :before-close="handleDataClose">
     <el-form ref="form" :model="form" label-width="80px">
       <el-form-item label="Category">
           <el-select placeholder="category" v-model="form.category" >
@@ -24,10 +24,10 @@
       </el-form-item>
 
       <el-form-item label="Tags">
-        <el-tag :key="tag" v-for="tag in form.dynamicTags" closable :disable-transitions="false" @close="handleClose(tag)">
+        <el-tag :key="tag" v-for="tag in dynamicTags" closable :disable-transitions="false" @close="handleClose(tag)">
           {{tag}}
         </el-tag>
-        <el-input class="input-new-tag" v-if="form.inputVisible" v-model="form.inputValue" ref="saveTagInput" size="small"
+        <el-input class="input-new-tag" v-if="inputVisible" v-model="inputValue" ref="saveTagInput" size="small"
           @keyup.enter.native="handleInputConfirm" @blur="handleInputConfirm">
     </el-input>
     <el-button v-else class="button-new-tag" size="small" @click="showInput"  icon="el-icon-plus" circle ></el-button>
@@ -40,8 +40,8 @@
 
       <span slot="footer" class="dialog-footer">
         <el-button type="primary"
-        @click="addMessage({ author: 1, content: form.content, category: form.category , tags:form.dynamicTags})" 
-        :disabled="!form.content || !form.dynamicTags  ">Submit</el-button>
+        @click="addMessage({ author: 1, content: form.content, category: form.category , tags:dynamicTags})" 
+        :disabled="!form.content || !dynamicTags  ">Submit</el-button>
       </span>
   </el-dialog>
   
@@ -60,10 +60,41 @@
               </el-badge>
               <el-button type="primary" size="small"  style="float: left;margin-right:10px;margin-top:15px;margin-left:10px;" plain v-html="msg.category_name"></el-button>
 
-            <el-button style="float: right;margin-top:10px;" type="submit" @click="putMessage(msg.id,currentMessage)" circle><i class="el-icon-edit"></i></el-button>
-            
+            <!-- <el-button style="float: right;margin-top:10px;" type="submit" @click="putMessage(msg.id,currentMessage)" circle><i class="el-icon-edit"></i></el-button> -->
+            <el-button style="float: right;margin-top:10px;" type="submit" @click="getMessage(msg.id)" circle><i class="el-icon-edit"></i></el-button>
+
             <el-button style="float: right;margin-top:10px;" type="submit" @click="deleteMessage(msg.id)" circle><i class="el-icon-delete"></i></el-button>
               
+     <!-- Edit Messages -->
+    <el-dialog title="Edit Messages" :visible.sync="dialogEdit" width="30%"  :before-close="handleDataClose">
+    <el-form ref="form" :model="form" label-width="80px">
+      <el-form-item label="Category">
+          <el-select placeholder="category" v-model="form.category" >
+          <el-option v-for="(cate, index) in category" :key="index" v-html="cate.name" :value="cate.id" :label="cate.name"></el-option>
+          </el-select>
+      </el-form-item>
+
+      <el-form-item label="Tags">
+        <el-tag :key="tag" v-for="tag in dynamicTags " closable :disable-transitions="false" @close="handleClose(tag)">
+          {{tag}}
+        </el-tag>
+        <el-input class="input-new-tag" v-if="inputVisible" v-model="inputValue" ref="saveTagInput" size="small"
+          @keyup.enter.native="handleInputConfirm" @blur="handleInputConfirm">
+    </el-input>
+    <el-button v-else class="button-new-tag" size="small" @click="showInput"  icon="el-icon-plus" circle ></el-button>
+      </el-form-item>
+
+      <el-form-item label="Content">
+        <el-input type="textarea" v-model="form.content" ></el-input>
+      </el-form-item>
+    </el-form>
+
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary"
+        @click="patchMessage(message.id, {author: 1, content: form.content, category: form.category , tags:dynamicTags})" 
+        :disabled="!form.content || !dynamicTags  ">Submit</el-button>
+      </span>
+  </el-dialog>
 
               <br>
               
@@ -98,51 +129,57 @@ export default {
   inject: ['reload'],
   data() {
     return {
-      dialogVisible: false,
+      dialogAdd: false,
+      dialogEdit: false,
       form: {
           content: "",
           category: '',
-          dynamicTags: ['Hello World'],
-          inputVisible: false,
-          inputValue: ''
         },
-      currentMessage:  { author: 1, content: 'hahahaha', category: 1 , tags:['ABC','Hi']},
+      inputVisible: false,
+      inputValue: '',
+      dynamicTags: ['Hello World'],
     };
   },
   computed: mapState({
     messages: state => state.messages,
-    category: state => state.category
+    category: state => state.category,
+    message: state => state.message,
   }),
   methods: 
     {
       addMessage(item){
         this.$store.dispatch("addMessage",item)
       },
-      putMessage(pk, item){
-        this.$store.dispatch("putMessage", pk, item)
+      getMessage(pk){
+        this.$store.dispatch("getMessage", pk).then(() => {
+        this.dialogEdit = true;
+        });
+      },
+      patchMessage(pk, item){
+        this.$store.dispatch("patchMessage", pk, item)
         this.reload()
       },
       deleteMessage(pk){
         this.$store.dispatch("deleteMessage",pk)
       },
       handleClose(tag) {
-        this.form.dynamicTags.splice(this.form.dynamicTags.indexOf(tag), 1);
+        this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
       },
 
       showInput() {
-        this.form.inputVisible = true;
+        this.inputVisible = true;
         this.$nextTick(_ => {
           this.$refs.saveTagInput.$refs.input.focus();
         });
       },
 
       handleInputConfirm() {
-        let inputValue = this.form.inputValue;
+        let inputValue = this.inputValue;
         if (inputValue) {
-          this.form.dynamicTags.push(inputValue);
+          this.dynamicTags.push(inputValue);
         }
-        this.form.inputVisible = false;
-        this.form.inputValue = '';
+        this.inputVisible = false;
+        this.inputValue = '';
       },
       handleDataClose(done) {
         this.reload()
@@ -152,7 +189,6 @@ export default {
     this.$store.dispatch("getMessages"),
     this.$store.dispatch("getCategory")
       },
-
 };
 </script>
 
