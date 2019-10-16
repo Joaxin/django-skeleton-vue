@@ -21,9 +21,9 @@ export default {
         console.log(e);
       });
   },
-  patchMessage(msgId, payload) {
+  patchMessage(msgId,payload) {
     return api
-      .patch(`messages/${msgId}/`, payload)
+      .patch(`messages/${msgId}/`,payload)
       .then(response => response.data)
       .catch(e => {
         console.log(e);

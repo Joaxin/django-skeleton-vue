@@ -9,7 +9,14 @@ export default new Vuex.Store({
   state: {
     messages: [],
     category: [],
-    message: {}
+    form: {
+      id: 0,
+      content: "",
+      category: '',
+      tags: ['Hello World'],
+      inputVisible: false,
+      inputValue: '',
+    },
   },
   getters: {
     messages: state => {
@@ -18,8 +25,8 @@ export default new Vuex.Store({
     category: state => {
       return state.category;
     },
-    message: state => {
-      return state.message;
+    form: state => {
+      return state.form;
     }
   },
   mutations: {
@@ -30,15 +37,18 @@ export default new Vuex.Store({
       state.messages.push(message);
     },
     getMessage(state, message) {
-      state.message = message;
+      state.form.id = message.id
+      state.form.content = message.content
+      state.form.category = message.category
+      state.form.tags = message.tags
     },
-    putMessage(state, msgId, messages) {
-      state.messages = state.messages.splice(msgId, 1, messages);
-      state.messages = messages;
+    putMessage(state, msgId, message) {
+      let msgs= state.messages.splice(msgId, 1, message);
+      state.messages = msgs;
     },
-    patchMessage(state, msgId, messages) {
-      state.messages = state.messages.splice(msgId, 1, messages);
-      state.messages = messages;
+    patchMessage(state, msgId, message) {
+      let msgs= state.messages.splice(msgId, 1, message);
+      state.messages = msgs;
     },
     deleteMessage(state, msgId) {
       state.messages = state.messages.filter(obj => obj.id !== msgId);
@@ -63,13 +73,13 @@ export default new Vuex.Store({
         commit("addMessage", message);
       });
     },
-    putMessage({ commit }, msgId, message) {
-      messageService.putMessage(msgId, message);
-      commit("putMessage", msgId, message);
+    putMessage({ commit }, message) {
+      messageService.putMessage(message.id, message);
+      commit("putMessage", message.id, message);
     },
-    patchMessage({ commit }, msgId, message) {
-      messageService.patchMessage(msgId, message);
-      commit("patchMessage", msgId, message);
+    patchMessage({ commit }, message) {
+      messageService.patchMessage(message.id, message);
+      commit("patchMessage", message.id, message);
     },
     deleteMessage({ commit }, msgId) {
       messageService.deleteMessage(msgId);

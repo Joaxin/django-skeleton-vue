@@ -12,6 +12,12 @@
 - axios, element-ui
 - CRUD data manipulation
 
+### Todo
+
+- Loading
+- Basic Search
+- Auth
+
 ## Setup
 
 setup a `virtualenv` if needed
