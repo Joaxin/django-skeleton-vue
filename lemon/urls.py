@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('lime.api.urls', namespace='api')),
     path('',  TemplateView.as_view(template_name="index.html")),
+    path('about/',  TemplateView.as_view(template_name="index.html")),
     path('favicon.ico', serve, {'path': 'favicon.ico'}),
 ]
 

@@ -5,12 +5,25 @@
 ## Features
 
 - Django restframwork
+
 - admin simpleui
+
 - taggit
+
 - debug_toolbar
+
 - Vue CLI3 & Vue.js integration
+
 - axios, element-ui
+
 - CRUD data manipulation
+
+- Deploying  to Heroku
+
+  ```
+  username:demo
+  password:demodemo
+  ```
 
 ### Todo
 
@@ -36,8 +49,6 @@ Create a superuser:
 
 ```
 python manage.py createsuperuser
-username:demo
-passwordLdemodemo
 ```
 
 Run:
