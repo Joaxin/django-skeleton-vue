@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath django-skeleton-vue lemon.wsgi
+web: gunicorn lemon.wsgi --log-file -
