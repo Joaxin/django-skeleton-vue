@@ -25,6 +25,8 @@
   password:demodemo
   ```
 
+> Tips: you need to login to change the messages.
+
 ### Todo
 
 - Loading
